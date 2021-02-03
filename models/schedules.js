@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   Schedules.init({
     lesson_id: DataTypes.INTEGER,
-    start: DataTypes.STRING,
-    finish: DataTypes.STRING,
+    start: DataTypes.DATE,
+    finish: DataTypes.DATE,
     day_of_week: DataTypes.STRING
   }, {
     sequelize,

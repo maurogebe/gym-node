@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Payments.init({
     client_id: DataTypes.INTEGER,
     membership_id: DataTypes.INTEGER,
-    date: DataTypes.STRING
+    date: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Payments',
