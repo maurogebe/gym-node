@@ -2,8 +2,17 @@ const { Clients } = require("../models");
 
 const getClients = async(req, res) => {
     try {
-        const results = await Clients
-        res.json("Hola")
+        const results = await Clients.findAll()
+        res.json(results)
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+const getOnlyClient = async(req, res) => {
+    try {
+        const results = await Clients.findOne({where: {id: req.params.id}})
+        res.json(results)
     } catch(err) {
         console.log(err)
     }
@@ -21,5 +30,6 @@ const addClient = async(req, res) => {
 
 module.exports = {
     getClients,
+    getOnlyClient,
     addClient
 }
