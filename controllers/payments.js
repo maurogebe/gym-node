@@ -1,8 +1,18 @@
-const { Payments } = require("../models");
+const { Payments, Clients, Memberships } = require("../models");
 
 const getPayments = async(req, res) => {
     try {
-        const results = await Payments.findAll()
+        const results = await Payments.findAll({
+            include: [
+                {
+                    model: Clients,
+                    atttributes: ['first_name']
+                },
+                {
+                    model: Memberships
+                }
+            ]
+        })
         res.json(results)
     } catch(err) {
         console.log(err)
@@ -11,7 +21,19 @@ const getPayments = async(req, res) => {
 
 const getOnlyPayment = async(req, res) => {
     try {
-        const results = await Payments.findOne({where: {client_id: req.params.id}});
+        const results = await Payments.findOne({
+            include: [
+                {
+                    model: Clients
+                },
+                {
+                    model: Memberships
+                }
+            ],
+            where: {
+                client_id: req.params.id
+            }
+        });
         res.json(results)
     } catch(err) {
         console.log(err)

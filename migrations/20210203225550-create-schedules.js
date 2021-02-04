@@ -15,11 +15,18 @@ module.exports = {
           key: 'id'
         }
       },
+      client_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Clients',
+          key: 'id'
+        }
+      },
       start: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       finish: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       day_of_week: {
         type: Sequelize.STRING
