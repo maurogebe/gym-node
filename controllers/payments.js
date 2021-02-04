@@ -10,7 +10,7 @@ const getPayments = async(req, res) => {
                 },
                 {
                     model: Memberships,
-                    attributes: ['name']
+                    attributes: ['name', 'duration']
                 }
             ]
         })
@@ -25,10 +25,12 @@ const getOnlyPayment = async(req, res) => {
         const results = await Payments.findOne({
             include: [
                 {
-                    model: Clients
+                    model: Clients,
+                    attributes: ['first_name', 'last_name']
                 },
                 {
-                    model: Memberships
+                    model: Memberships,
+                    attributes: ['name', 'duration']
                 }
             ],
             where: {

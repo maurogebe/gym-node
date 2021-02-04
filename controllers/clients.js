@@ -1,11 +1,15 @@
-const { Clients, Payments } = require("../models");
+const { Clients, Payments, Memberships } = require("../models");
 
 const getClients = async(req, res) => {
     try {
         const results = await Clients.findAll({
             include: {
                 model: Payments,
-                attributes: ['membership_id']
+                attributes: [['id', 'payment_id']],
+                include: {
+                    model: Memberships,
+                    attributes: ['name', 'duration']
+                }
             }
         })
         res.json(results)
@@ -19,6 +23,11 @@ const getOnlyClient = async(req, res) => {
         const results = await Clients.findOne({
             include: {
                 model: Payments,
+                attributes: [['id', 'payment_id']],
+                include: {
+                    model: Memberships,
+                    attributes: ['name', 'duration']
+                },
                 where: {
                     id: req.params.id
                 }
