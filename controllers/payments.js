@@ -6,10 +6,11 @@ const getPayments = async(req, res) => {
             include: [
                 {
                     model: Clients,
-                    atttributes: ['first_name']
+                    attributes: ['first_name', 'last_name']
                 },
                 {
-                    model: Memberships
+                    model: Memberships,
+                    attributes: ['name']
                 }
             ]
         })

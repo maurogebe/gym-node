@@ -5,7 +5,7 @@ const getClients = async(req, res) => {
         const results = await Clients.findAll({
             include: {
                 model: Payments,
-                atttributes: ['membership_id']
+                attributes: ['membership_id']
             }
         })
         res.json(results)
